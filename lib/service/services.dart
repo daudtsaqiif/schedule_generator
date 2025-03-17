@@ -3,10 +3,10 @@ import 'dart:convert';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 
-class Services {
+class GeminiServices {
   static final String _apiKey = dotenv.env["GEMINI_API_KEY"] ?? "";
   static final String _baseUrl =
-      "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=GEMINI_API_KEY=";
+      "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent";
 
   static Future<String> generateSchedule(
     String scheduleName,
@@ -20,7 +20,7 @@ class Services {
     }
 
     //baseURL + API Key
-    final String url = _baseUrl + _apiKey;
+    final String url = _baseUrl + "?key=$_apiKey";
 
     //request body
     final Map<String, dynamic> requestBody = {
